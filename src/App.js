@@ -4,7 +4,10 @@ import { render } from 'react-dom'
 import moment from 'moment'
 
 import service from './service'
-// {title:'My New Task!',description:'This is my new task',img:'https://picsum.photos/1600/900?v99'}
+
+import TaskState from './components/TaskState'
+
+import './main.scss'
 
 class TaskApp extends React.Component {
   state = {
@@ -23,20 +26,20 @@ class TaskApp extends React.Component {
   loadTasks = () => {
     const data = service(this.endpoint)
     this.setState({ taskList: data })
-    console.log(data)
   }
 
   handleChange = event => {
     switch (e.target) {
       case 1:
-        console.log('sss')
+        console.log('title')
       // this.setState({
       //   title: '',
       // })
       case 2:
-        console.log('aaa')
+        console.log('description')
       case 3:
-        console.log('ggg')
+        console.log('image')
+      // https://picsum.photos/1600/900?v99
     }
   }
 
@@ -83,7 +86,7 @@ class TaskApp extends React.Component {
 
           <button>Add Task</button>
         </form>
-        <section id="taskContainer">
+        <section id="taskContainer" className="tasks-container">
           {this.state.taskList.map(task => (
             <article key={task.id}>
               {task.img && (
@@ -94,14 +97,16 @@ class TaskApp extends React.Component {
               <h2>{task.title}</h2>
               <div className="description">{task.description}</div>
               <div className="created">
+                created on
                 {moment(task.createdOn, 'HH:mm:ss').format('hh:mm A')}
+                by
+                {task.createdby}
               </div>
               <div className="due-date">
-                {moment(task.dueDate, 'HH:mm:ss').format('hh:mm A')}
+                Due on {moment(task.dueDate, 'HH:mm:ss').format('hh:mm A')}
               </div>
-              <div className="author">{task.createdby}</div>
               <div className="complete">
-                Completed: {task.completed ? 'yes' : 'no'}
+                <TaskState completed={task.completed} due={task.dueDate} />
               </div>
             </article>
           ))}
