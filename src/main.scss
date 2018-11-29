@@ -1,0 +1,59 @@
+@import './font.scss';
+
+body {
+  padding: 10px;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+}
+
+.taskCard {
+  background-color: white;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: gray 2px 2px;
+}
+
+.taskLate {
+  background-color: lightpink !important;
+}
+
+.taskCompleted {
+  background-color: lightgreen !important;
+}
+
+.taskCard > img {
+  width: 160px;
+}
+
+.tasks-container {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: center;
+
+  article {
+    width: 30%;
+    max-width: 400px;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #fefefe;
+    border: solid 2px #ececec;
+    margin: 20px;
+
+    .image-container {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+}
